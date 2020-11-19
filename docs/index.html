@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.0/svg.js"></script>
+</head>
+<style>
+textarea {
+    display: block;
+    margin: auto;
+    width: 75%;
+    height: 5em;
+    font-family: "Fira Code";
+}
+button {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
+text {
+    font-family: "Fira Code";
+    pointer-events: none;
+}
+</style>
+<body>
+    <div id="ast"></svg>
+    <textarea id="textarea" spellcheck="false"></textarea>
+    <script type="module">
+        const textarea = document.getElementById("textarea");
+        const astViewer = document.getElementById("ast");
+        textarea.oninput = function() {
+            text = textarea.value;
+            let m = parse(text);
+            astViewer.innerHTML = m;
+        }
+    </script>
+</body>
+</html>
