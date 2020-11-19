@@ -1,5 +1,5 @@
-use codespan::*;
 use crate::ast;
+use codespan::*;
 
 enum TokeniseState {
     Start,
@@ -114,10 +114,7 @@ fn tokenise(source: &str) -> Vec<ast::Token> {
             Whitespace | Comment => continue,
         };
 
-        result.push(ast::Token::with_span(
-            kind,
-            span,
-        ));
+        result.push(ast::Token::with_span(kind, span));
     }
 
     result
@@ -126,8 +123,8 @@ fn tokenise(source: &str) -> Vec<ast::Token> {
 struct ParseState<I: Iterator<Item = ast::Token>>(std::iter::Peekable<I>);
 
 impl<I> ParseState<I>
-    where
-        I: Iterator<Item = ast::Token>,
+where
+    I: Iterator<Item = ast::Token>,
 {
     fn parse_expr(&mut self) -> ast::Expr {
         if let Some(token) = self.0.next() {
